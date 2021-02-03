@@ -1,12 +1,13 @@
 const express = require('express')
 const env = require('dotenv')
 const app = express()
-// const bodyParser= require('body-parser')
 const mongoose = require('mongoose')
 
 
 const authRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin/auth')
+const categoryRoutes = require('./routes/category')
+const productRoutes = require('./routes/product')
 
 env.config()
 
@@ -26,7 +27,11 @@ mongoose.connect(
 app.use(express.json())
 
 app.use('/api',authRoutes)
-app.use('api',adminRoutes)
+app.use('/api',adminRoutes)
+app.use('/api',categoryRoutes)
+app.use('/api',productRoutes)
+
+
 
 
 app.listen(process.env.PORT,()=>{
